@@ -13,7 +13,7 @@ http://www.instructables.com/id/2-Player-Bartop-Arcade-Machine-Powered-by-Pi/ )
 10. Paint and enjoy playing!!! 
 
 
-9. <h1> Solve problems as Sound or Joystick,Buttons. </h1>
+9.  <b> Solve problems as Sound or Joystick,Buttons. </b>
 Problems found it and Solved: 
 
 I have changed the monitor HVDI to VGA, previously I had sound but when I changed the cable, the sound was mute,  with this command you can test it. 
@@ -30,10 +30,11 @@ hdmi_drive=2 Normal HDMI mode (Sound will be sent if supported and enabled)
 
 Another solution but I didn’t try it is:
 
-Create a shell script:
-sudo nano mpgapless.sh 
-Then enter the following into the shell script.
-#!/bin/bash # mpgapless  case "$@" in    *.m3u) PL="-playlist"    ;; esac rm /tmp/audiofifo mkfifo /tmp/audiofifo aplay -t raw -c 2 -f S16_LE -r 48000 /tmp/audiofifo &> \ /tmp/aplayfifo.log & mplayer -noconfig all -nolirc -nojoystick \ -novideo -benchmark -vc null -vo null -ao pcm:fast -af resample=48000 -nocache \ -ao pcm:nowaveheader:file=/tmp/audiofifo $PL "$@" 
+Create a shell script: sudo nano mpgapless.sh 
+
+|Then enter the following into the shell script.|
+|#!/bin/bash # mpgapless  case "$@" in    *.m3u) PL="-playlist"    ;; esac rm /tmp/audiofifo mkfifo /tmp/audiofifo aplay -t raw| |-c 2 -f S16_LE -r 48000 /tmp/audiofifo &> \ /tmp/aplayfifo.log & mplayer -noconfig all -nolirc -nojoystick \ -novideo| |-benchmark -vc null -vo null -ao pcm:fast -af resample=48000 -nocache \ -ao pcm:nowaveheader:file=/tmp/audiofifo $PL "$@"| 
+
 Make the file executable:
 chmod 555 ./mpgapless.sh 
 If you have a directory of music files you can use it like:
