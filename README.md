@@ -23,7 +23,8 @@ http://www.instructables.com/id/2-Player-Bartop-Arcade-Machine-Powered-by-Pi/ )
 2. 	Buy a RaspberryPi, You can buy a RaspberryPi on Amazon, http://www.element14.com/community/community/raspberry-pi 
 3. 	Mount the panels and make the Cabin, I took this example. http://www.koenigs.dk/mame/eng/drawweecade.htm
 4. 	Install the joystick and buttons, I got the Joystick and Buttons on http://www.arcadeworlduk.com/pages/Shipping-And-Returns.html, I bought the cables and connector in a electronic shop or on the web. 
-5. 	Connect the cables to GPIO, to connect the cables on GPIO is more easy that you can imagine, first join just one input of Joystick up, down, left and right, in one cable, and do with buttons the same. check on the GPIO map and connect in Ground. the rest of cable in GPIO inputs. ( check on the map) I connect GPIO17, 23, 24, 25, 6. 
+5. 	Connect the cables to GPIO, to connect the cables on GPIO is more easy that you can imagine, first join just one input of Joystick up, down, left and right, in one cable, and do with buttons the same. check on the GPIO map and connect in Ground. the rest of cable in GPIO inputs. ( check on the map) I connect GPIO17, 23, 24, 25, 6. https://learn.adafruit.com/retro-gaming-with-raspberry-pi/buttons
+
 6. 	Install PiMame OS onto your Raspberry Pi and Install Adafruit for the controllers, go to your Rpi on git and clone, piMame repository. 
 - sudo apt-get install git
 - git clone https://github.com/ssilverm/pimame_installer
