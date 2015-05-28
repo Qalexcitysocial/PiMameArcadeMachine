@@ -1,7 +1,9 @@
 Adafruit-Retrogame
 ==================
 
-Raspberry Pi GPIO-to-USB utility for classic game emulators.
+Raspberry 
+
+RPi GPIO-to-USB utility for classic game emulators.
 
 How-to: http://learn.adafruit.com/retro-gaming-with-raspberry-pi
 
