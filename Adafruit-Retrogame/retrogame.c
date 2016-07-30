@@ -1,8 +1,5 @@
-/*
-ADAFRUIT RETROGAME UTILITY: remaps buttons on Raspberry Pi GPIO header
-to virtual USB keyboard presses.  Great for classic game emulators!
-Retrogame is interrupt-driven and efficient (usually under 0.3% CPU use)
-and debounces inputs for glitch-free gaming.
+/* ADAFRUIT RETROGAME UTILITY: remaps buttons on Raspberry Pi GPIO header to virtual USB keyboard presses.  Great for classic game emulators! Retrogame
+is interrupt-driven and efficient (usually under 0.3% CPU use) and debounces inputs for glitch-free gaming.
 
 Connect one side of button(s) to GND pin (there are several on the GPIO
 header, but see later notes) and the other side to GPIO pin of interest.
@@ -86,21 +83,25 @@ POSSIBILITY OF SUCH DAMAGE.
 struct {
 	int pin;
 	int key;
-} *io, // In main() this pointer is set to one of the two tables below.
-   ioTFT[] = {
+} *io,   // In main() this pointer is set to one of the two tables below.
+    ioStandard[]= {
 	// This pin/key table is used if an Adafruit PiTFT display
 	// is detected (e.g. Cupcade or PiGRRL).
 	// Input   Output (from /usr/include/linux/input.h)
-	{   2,     KEY_LEFT     },   // Joystick (4 pins)
-	{   3,     KEY_RIGHT    },
-	{   4,     KEY_DOWN     },
-	{  17,     KEY_UP       },
-	{  27,     KEY_Z        },   // A/Fire/jump/primary
-	{  22,     KEY_X        },   // B/Bomb/secondary
-	{  23,     KEY_R        },   // Credit
-	{  18,     KEY_Q        },   // Start 1P
-	{  -1,     -1           } }, // END OF LIST, DO NOT CHANGE
-	// MAME must be configured with 'z' & 'x' as buttons 1 & 2 -
+	{   6,     KEY_LEFT      },   // Joystick (4 pins)
+	{   13,     KEY_RIGHT     },
+	{   19,     KEY_DOWN      },
+	{   17,     KEY_UP        },
+	//buttons
+  {   16,     KEY_6         },         // Credits
+	{   20,     KEY_LEFTCTRL  },        // Button   1 / Shoot / Disparo
+  {    5,     KEY_LEFTALT   },       // Button  2 / Jump / Salto
+	{   26,     KEY_1         },      // Button  3  Play Game / Empezar Partida
+	{   23,	    KEY_ESC  	  },       // Button Black / SCP
+  {   18,      KEY_ENTER     },   //Button Red / Enter
+	{  -1,     -1           } },   // END OF LIST, DO NOT CHANGE
+
+        // MAME must be configured with 'z' & 'x' as buttons 1 & 2 -
 	// this was required for the accompanying 'menu' utility to
 	// work (catching crtl/alt w/ncurses gets totally NASTY).
 	// Credit/start are likewise moved to 'r' & 'q,' reason being
@@ -108,21 +109,24 @@ struct {
 	// GPIO options are 'maxed out' with PiTFT + above table.
 	// If additional buttons are desired, will need to disable
 	// serial console and/or use P5 header.  Or use keyboard.
-   ioStandard[] = {
+   ioTFT[] = {
 	// This pin/key table is used when the PiTFT isn't found
 	// (using HDMI or composite instead), as with our original
 	// retro gaming guide.
 	// Input   Output (from /usr/include/linux/input.h)
-	{  25,     KEY_LEFT     },   // Joystick (4 pins)
-	{   9,     KEY_RIGHT    },
-	{  10,     KEY_UP       },
-	{  17,     KEY_DOWN     },
-	{  23,     KEY_LEFTCTRL },   // A/Fire/jump/primary
-	{   7,     KEY_LEFTALT  },   // B/Bomb/secondary
+	{  20,     KEY_LEFT     },   // Joystick (4 pins)
+	{  17,     KEY_RIGHT    },
+	{  13,     KEY_UP       },
+	{   6,     KEY_DOWN     },
+	{  25,     KEY_6         },   // boton de player
+	{   24,    KEY_LEFTCTRL  },   // Boton 1 /Bomb/secondary
+        {   23,    KEY_LEFTALT        },// boton 2
+        {   18,    KEY_ENTER		}, //boton 3
+
 	// For credit/start/etc., use USB keyboard or add more buttons.
 	{  -1,     -1           } }; // END OF LIST, DO NOT CHANGE
 
-// A "Vulcan nerve pinch" (holding down a specific button combination
+	// A "Vulcan nerve pinch" (holding down a specific button combination
 // for a few seconds) issues an 'esc' keypress to MAME (which brings up
 // an exit menu or quits the current game).  The button combo is
 // configured with a bitmask corresponding to elements in the above io[]
