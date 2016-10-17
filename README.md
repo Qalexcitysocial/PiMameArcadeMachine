@@ -15,6 +15,7 @@ http://www.instructables.com/id/2-Player-Bartop-Arcade-Machine-Powered-by-Pi/ )
 10. Paint and enjoy playing!!! 
 
 
+
 --------- Steps --------- 
 
 1.	Buy the panel, and cut in this size. ( check the plan on instructables 
@@ -78,4 +79,12 @@ That is because you are also including the gamera.c in your make which requires 
 
 sudo apt-get install ncurses-dev libexpat1-dev
 then run your make again. you should be good from there.
+IMPORTANT!!! 
+cd Adafruit-Retrogame
+nano retrogame.c
+make retrogame
+Depending what’s in /etc/rc.local, you might need to move retrogame to a different location (such as /usr/local/bin). Reboot
+
+
+
 
